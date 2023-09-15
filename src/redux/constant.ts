@@ -1,0 +1,10 @@
+export const CREATE_ARTICLE = "CREATE_ARTICLE";
+export const DELETE_ARTICLE = "DELETE_ARTICLE";
+export const UPDATE_ARTICLE = "DELETE_ARTICLE";
+export const SET_FEED_ARTICLES = "SET_FEED_ARTICLES"; // cái mình follow
+export const SET_GLOBAL_ARTICLES = "SET_GLOBAL_ARTICLES"; // tất cả
+export const SET_PERSONAL_ARTICLES = "SET_PERSONAL_ARTICLES"; // của cá nhân
+export const SET_FAVORITED_ARTICLES = "SET_FAVORITED_ARTICLES"; // cá nhân thích
+export const GET_FEED_ARTICLES = "GET_FEED_ARTICLES";
+export const GET_GLOBAL_ARTICLES = "GET_GLOBAL_ARTICLES";
+export const GET_AN_ARTICLE = "GET_A_ARTICLE";
