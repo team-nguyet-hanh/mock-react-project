@@ -29,10 +29,13 @@ const registerSlice = createSlice({
         },
         registerSuccess(state, action: PayloadAction<RegisterPayload>) {
             state.isSuccess = true;
-            state.newUser = action.payload
+            state.newUser = action.payload;
         },
         registerFail(state, action: PayloadAction<RegisterPayload>) {
             state.isFail = true;
+        },
+        registered(state) {
+            state.isSuccess = false;
         }
     }
 })
