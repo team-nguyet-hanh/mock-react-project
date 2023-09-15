@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { authActions } from "../redux/authen/authSlice";
 import { useEffect } from "react";
+import { registerActions } from "../redux/register/registerSlice";
+
 
 interface MyFormValues {
   email: string;
@@ -32,10 +34,12 @@ export default function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isLogged = useSelector((state: any) => state.auth.isLoggedIn);
-  const isInvalid = useSelector((state: any) => state.auth.invalid)
+  const isInvalid = useSelector((state: any) => state.auth.invalid);
+
   useEffect(() => {
-    isLogged && navigate("/#");
-  }, [isLogged, navigate]);
+    isLogged && navigate("/#/");
+    dispatch(registerActions.registered());
+  }, [dispatch, isLogged, navigate]);
 
   return (
     <div>

@@ -44,16 +44,16 @@ export default function Signup() {
   const navigate = useNavigate();
   const initialValues: MyFormValues = { email: "", password: "", username: "" };
   const registerSuccess = useSelector((state: any) => state.register.isSuccess);
-  const currentUser = useSelector((state: any) => state.register.newUser);
   useEffect(() => {
-    if (registerSuccess && currentUser) {
-      navigate(`/login`);
+    if (registerSuccess) {
+        navigate(`/login`);
     }
-  }, [currentUser, navigate, registerSuccess]);
+  }, [navigate, registerSuccess]);
 
   return (
     <div>
       <h1>Sign Up </h1>
+
       <Link to="/login">Have an account?</Link>
       <Formik
         initialValues={initialValues}
