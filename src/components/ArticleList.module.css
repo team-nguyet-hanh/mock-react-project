@@ -1,0 +1,15 @@
+.homeList {
+  width: 100vw;
+}
+
+@media (min-width: 1200px) {
+  .homeList {
+    width: 800px;
+    margin-left: 100px;
+  }
+}
+
+.spinner {
+  margin-top: 10px;
+  margin-left: 50%;
+}

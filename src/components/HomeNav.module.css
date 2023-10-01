@@ -1,0 +1,28 @@
+.nav {
+  width: 100vw;
+
+  /* margin: 0 40px; */
+}
+
+@media (min-width: 700px) {
+  .nav {
+    margin-left: 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .nav {
+    width: 800px;
+    margin-left: 100px;
+  }
+}
+
+.navLink {
+  color: black;
+}
+
+.navLink:active,
+.activeNavLink {
+  border-bottom: 2px solid #007bff;
+  color: #007bff;
+}

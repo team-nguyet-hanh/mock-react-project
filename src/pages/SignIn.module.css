@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  height: 80vh;
+}
+
+.icon {
+  text-align: center;
+}
+
+.icon i,
+.button {
+  border: 1px solid #0d6efd;
+  border-radius: 8px;
+  background: #373b44;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #4286f4, #373b44);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #4286f4, #373b44);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.button:hover {
+  background-color: #4e90f4;
+}
+
+.icon i {
+  padding: 6px 5px;
+  border-radius: 50%;
+}
+
+.button {
+  width: 100%;
+  padding: 5px;
+  margin: 5px 0 15px;
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+  text-align: center;
+}
+
+.formGroup {
+  margin: 10px 0;
+}
+
+.label {
+  display: block;
+}
+
+.field {
+  outline: none !important;
+  width: 100%;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 5px 0 10px;
+  border: 2px solid #4e90f4;
+}
+
+.textareaField {
+  border: 2px solid #4e90f4;
+  outline: none !important;
+  width: 100%;
+  border-radius: 8px;
+  padding: 5px;
+  margin: 3px 0;
+}
+
+.field:focus,
+.textareaField:focus,
+.button:focus {
+  outline: none !important;
+  box-shadow: 0 0 10px #719ece;
+}
+
+.textareaField:focus {
+  outline: none !important;
+  box-shadow: 0 0 10px #719ece;
+}
+
+.error {
+  color: red;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+

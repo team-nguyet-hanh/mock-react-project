@@ -1,11 +1,15 @@
 import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { authActions } from "../redux/authen/authSlice";
+import { AuthState, authActions } from "../redux/authen/authSlice";
 import { useEffect } from "react";
-import { registerActions } from "../redux/register/registerSlice";
-
-
+import Stack from "react-bootstrap/Stack";
+import Col from "react-bootstrap/Col";
+import {
+  RegisterState,
+  registerActions,
+} from "../redux/register/registerSlice";
+import signin from "./SignIn.module.css";
 interface MyFormValues {
   email: string;
   password: string;
@@ -33,64 +37,98 @@ export default function SignIn() {
   const initialValues: MyFormValues = { email: "", password: "" };
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isLogged = useSelector((state: any) => state.auth.isLoggedIn);
-  const isInvalid = useSelector((state: any) => state.auth.invalid);
+  const registerSuccess = useSelector(
+    (state: { register: RegisterState }) => state.register.isSuccess
+  );
+  const isLogged = useSelector(
+    (state: { auth: AuthState }) => state.auth.isLoggedIn
+  );
+  const isInvalid = useSelector(
+    (state: { auth: AuthState }) => state.auth.invalid
+  );
 
   useEffect(() => {
-    isLogged && navigate("/#/");
+    isLogged && navigate("/");
     dispatch(registerActions.registered());
-  }, [dispatch, isLogged, navigate]);
+  }, [dispatch, isLogged, navigate, registerSuccess]);
 
   return (
-    <div>
-      <h1>Sign in</h1>
-      <Link to="/register">Need an account?</Link>
-      {!isLogged && isInvalid && (
-        <div style={{ color: "red" }}>Email or password is invalid </div>
-      )}
+    <div className={signin.container}>
+      <Col lg="3" xs="8" sm="8" md="8">
+        <div className={signin.icon}>
+          <i className="fa-solid fa-house-lock"></i>
+        </div>
 
-      <Formik
-        initialValues={initialValues}
-        onSubmit={(values, actions) => {
-          actions.setSubmitting(false);
-          dispatch(
-            authActions.login({
-              email: values.email,
-              password: values.password,
-            })
-          );
-        }}
-      >
-        {({ errors, touched }) => (
-          <Form>
-            <div>
-              <label htmlFor="email">Email</label>
-              <Field
-                id="email"
-                name="email"
-                placeholder="Email"
-                validate={validateEmail}
-              />
-              {touched.email && errors.email && <div>{errors.email}</div>}
-            </div>
+        <h1 className="text-center mb-3">Sign in</h1>
 
-            <div>
-              <label htmlFor="password">Password</label>
-              <Field
-                id="password"
-                name="password"
-                placeholder="Password"
-                validate={validatePassword}
-              />
-              {touched.password && errors.password && (
-                <div>{errors.password}</div>
-              )}
-            </div>
+        {!isLogged && isInvalid ? (
+          <div style={{ color: "red" }}>Email or password is invalid </div>
+        ) : null}
 
-            <button type="submit">Sign in</button>
-          </Form>
-        )}
-      </Formik>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={(values, actions) => {
+            actions.setSubmitting(false);
+            dispatch(
+              authActions.login({
+                email: values.email,
+                password: values.password,
+              })
+            );
+          }}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <Stack>
+                <div className={signin.formGroup}>
+                  <label className={signin.label} htmlFor="email">
+                    Email
+                  </label>
+
+                  <Field
+                    className={signin.field}
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email address"
+                    validate={validateEmail}
+                  />
+                  {touched.email && errors.email && (
+                    <div className={signin.error}>{errors.email}</div>
+                  )}
+                </div>
+              </Stack>
+
+              <Stack>
+                <div className={signin.formGroup}>
+                  <label className={signin.label} htmlFor="password">
+                    Password
+                  </label>
+
+                  <Field
+                    className={signin.field}
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Enter your password"
+                    validate={validatePassword}
+                  />
+
+                  {touched.password && errors.password && (
+                    <div className={signin.error}>{errors.password}</div>
+                  )}
+                </div>
+              </Stack>
+
+              <button className={signin.button} type="submit">
+                Sign in
+              </button>
+            </Form>
+          )}
+        </Formik>
+        <Link className={signin.link} to="/register">
+          Need an account? Sign up
+        </Link>
+      </Col>
     </div>
   );
 }

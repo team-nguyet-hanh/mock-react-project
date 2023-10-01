@@ -1,0 +1,36 @@
+.follow {
+    background-color: #495057;
+    color: white !important;
+}
+
+.unfollow {
+    background-color: #0d6efd;
+    color: white !important;
+}
+
+.follow:hover {
+    border: none;
+    box-shadow: 0 0 10px #719ECE;
+    color: #495057 !important;
+    background-color: white;
+}
+
+.unfollow:hover {
+    border: none;
+    box-shadow: 0 0 10px #719ECE;
+    background-color: white;
+    color: #0d6efd !important;
+}
+
+.follow,
+.unfollow {
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+    font-weight: 500;
+    width: 10rem;
+}

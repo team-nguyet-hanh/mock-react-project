@@ -1,0 +1,43 @@
+.article {
+  width: 100vw;
+  margin: 0;
+}
+
+@media (min-width: 1200px) {
+  .article {
+    width: 800px;
+  }
+}
+
+.image {
+  width: 32px;
+  height: 32px;
+}
+
+.header {
+  height: 60px;
+  margin: 10px 20px 0;
+}
+
+.authorName {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  height: 30px;
+  font-size: 1.25rem;
+}
+
+.time {
+  color: grey;
+  height: 30px;
+}
+
+.title {
+  font-size: 1.75rem;
+  color: black;
+  font-weight: bold;
+}
+
+.description {
+  color: grey;
+}

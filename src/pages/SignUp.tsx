@@ -1,8 +1,13 @@
 import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { registerActions } from "../redux/register/registerSlice";
+import {
+  RegisterState,
+  registerActions,
+} from "../redux/register/registerSlice";
 import { useEffect } from "react";
+import signin from "./SignIn.module.css";
+import Col from "react-bootstrap/Col";
 
 interface MyFormValues {
   username: string;
@@ -43,74 +48,96 @@ export default function Signup() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const initialValues: MyFormValues = { email: "", password: "", username: "" };
-  const registerSuccess = useSelector((state: any) => state.register.isSuccess);
+  const registerSuccess = useSelector(
+    (state: { register: RegisterState }) => state.register.isSuccess
+  );
   useEffect(() => {
     if (registerSuccess) {
-        navigate(`/login`);
+      navigate(`/login`);
     }
   }, [navigate, registerSuccess]);
 
   return (
-    <div>
-      <h1>Sign Up </h1>
+    <div className={signin.container}>
+      <Col lg="3" xs="8" sm="8" md="8">
+        <div className={signin.icon}>
+          <i className="fa-solid fa-user-plus"></i>
+        </div>
+        <h1 className="text-center mb-3">Register</h1>
 
-      <Link to="/login">Have an account?</Link>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={(values, actions) => {
-          console.log({ values, actions });
-          dispatch(
-            registerActions.signup({
-              email: values.email,
-              password: values.password,
-              username: values.username,
-            })
-          );
-        }}
-      >
-        {({ errors, touched }) => (
-          <Form>
-            <div>
-              <label htmlFor="user">User name</label>
-              <Field
-                id="user"
-                name="username"
-                placeholder="User name"
-                validate={validateUser}
-              />
-              {touched.username && errors.username && (
-                <div>{errors.username}</div>
-              )}
-            </div>
+        <Formik
+          initialValues={initialValues}
+          onSubmit={(values, actions) => {
+            console.log({ values, actions });
+            dispatch(
+              registerActions.signup({
+                email: values.email,
+                password: values.password,
+                username: values.username,
+              })
+            );
+          }}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <div className={signin.formGroup}>
+                <label className={signin.label} htmlFor="user">
+                  User name
+                </label>
+                <Field
+                  id="user"
+                  name="username"
+                  placeholder="User name"
+                  validate={validateUser}
+                  className={signin.field}
+                />
+                {touched.username && errors.username && (
+                  <div className={signin.error}>{errors.username}</div>
+                )}
+              </div>
 
-            <div>
-              <label htmlFor="email">Email</label>
-              <Field
-                id="email"
-                name="email"
-                placeholder="Email"
-                validate={validateEmail}
-              />
-              {touched.email && errors.email && <div>{errors.email}</div>}
-            </div>
+              <div className={signin.formGroup}>
+                <label className={signin.label} htmlFor="email">
+                  Email
+                </label>
+                <Field
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                  validate={validateEmail}
+                  className={signin.field}
+                />
+                {touched.email && errors.email && (
+                  <div className={signin.error}>{errors.email}</div>
+                )}
+              </div>
 
-            <div>
-              <label htmlFor="password">Password</label>
-              <Field
-                id="password"
-                name="password"
-                placeholder="Password"
-                validate={validatePassword}
-              />
-              {touched.password && errors.password && (
-                <div>{errors.password}</div>
-              )}
-            </div>
+              <div className={signin.formGroup}>
+                <label className={signin.label} htmlFor="password">
+                  Password
+                </label>
+                <Field
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                  validate={validatePassword}
+                  className={signin.field}
+                />
+                {touched.password && errors.password && (
+                  <div className={signin.error}>{errors.password}</div>
+                )}
+              </div>
 
-            <button type="submit">Sign up</button>
-          </Form>
-        )}
-      </Formik>
+              <button className={signin.button} type="submit">
+                Sign up
+              </button>
+            </Form>
+          )}
+        </Formik>
+        <Link className={signin.link} to="/login">
+          Have an account? Sign in
+        </Link>
+      </Col>
     </div>
   );
 }

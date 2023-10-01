@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "../../models/user";
+import { UserType } from "../../models/user";
 export interface RegisterPayload {
     username: string;
     email: string;
@@ -9,7 +9,7 @@ export interface RegisterPayload {
 export interface RegisterState {
     isSuccess: boolean;
     isFail: boolean;
-    newUser?: User;
+    newUser?: UserType;
     isSignUp: boolean
 }
 
@@ -24,14 +24,14 @@ const registerSlice = createSlice({
     name: 'register',
     initialState: initialState,
     reducers: {
-        signup(state, action: PayloadAction<RegisterPayload>) {
+        signup(state, _action: PayloadAction<RegisterPayload>) {
             state.isSignUp = true;
         },
-        registerSuccess(state, action: PayloadAction<RegisterPayload>) {
+        registerSuccess(state, action: PayloadAction<UserType>) {
             state.isSuccess = true;
             state.newUser = action.payload;
         },
-        registerFail(state, action: PayloadAction<RegisterPayload>) {
+        registerFail(state, _action: PayloadAction<RegisterPayload>) {
             state.isFail = true;
         },
         registered(state) {

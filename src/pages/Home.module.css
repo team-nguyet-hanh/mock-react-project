@@ -1,0 +1,10 @@
+.home {
+  flex-direction: column-reverse !important;
+}
+
+@media (min-width: 1200px) {
+  .home {
+    margin: 20px 100px 0;
+    flex-direction: row !important;
+  }
+}

@@ -1,0 +1,15 @@
+.list {
+  width: 95vw;
+  margin: 20px 0 0px 10px;
+}
+
+@media (min-width: 1200px) {
+  .list {
+    width: 250px;
+    margin: 40px 100px 0 0;
+  }
+}
+
+.spinner {
+  margin-left: 50%;
+}

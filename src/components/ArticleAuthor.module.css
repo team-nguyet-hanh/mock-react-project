@@ -1,0 +1,24 @@
+.info {
+  margin-left: 20px;
+}
+
+.image {
+  width: 32px;
+  height: 32px;
+}
+
+.username {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: black;
+  height: 30px;
+}
+
+.date {
+  color: grey;
+  height: 30px;
+}
+
+.spinner {
+  margin-left: 50%;
+}

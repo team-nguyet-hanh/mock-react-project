@@ -1,7 +1,8 @@
-export interface User {
+export interface UserType {
     email: string;
-    token: string;
+    token?: string;
     username: string;
-    bio: string | null;
+    bio: string;
     image: string;
+    following?: boolean;
   }

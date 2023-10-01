@@ -1,0 +1,16 @@
+.favList {
+  width: 100vw;
+}
+
+@media (min-width: 1200px) {
+  .favList {
+    width: 800px;
+    margin: auto;
+  }
+}
+
+.spinner {
+  margin-top: 10px;
+
+  margin-left: 50%;
+}
