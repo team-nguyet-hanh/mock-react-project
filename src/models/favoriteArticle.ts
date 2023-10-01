@@ -3,8 +3,8 @@ export interface FavoriteArticle {
   slug: string;
   title: string;
   description: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
   authorId: string;
   tagList: string[];
   author: {
@@ -15,6 +15,6 @@ export interface FavoriteArticle {
   };
   body: string;
   favoritedBy: object[];
-  favorited: string;
+  favorited: boolean;
   favoritesCount: number;
 }

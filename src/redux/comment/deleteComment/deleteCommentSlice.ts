@@ -19,11 +19,11 @@ const DeleteCommentSlice = createSlice({
   name: "deleteComment",
   initialState: initialDeleteCommentState,
   reducers: {
-    deleteComment(state, _action: PayloadAction<string>) {
+    deleteComment(state, _action: { payload: { slug: string; id: number } }) {
       state.isLoading = true;
     },
 
-    deleteCommentSuccess(state, action: PayloadAction) {
+    deleteCommentSuccess(state, action: { payload: number }) {
       state.isSuccess = true;
       state.isLoading = false;
       state.deletedCommentId.push(action.payload);

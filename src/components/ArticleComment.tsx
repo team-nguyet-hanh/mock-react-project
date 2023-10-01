@@ -6,6 +6,7 @@ import { getCurrentUser } from "../redux/currentUser/currentUserSlice";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CommentStyle from "./ArticleComment.module.css";
+import { UserType } from "../models/user";
 
 type ArticleCommentProps = {
   filteredComment: ArticleComment[];
@@ -23,7 +24,7 @@ const ArticleCommentList: React.FC<ArticleCommentProps> = ({
   const dispatch = useDispatch();
 
   const currentUser = useSelector(
-    (state: { currentUser: { currentAccount } }) => {
+    (state: { currentUser: { currentAccount: UserType } }) => {
       return state.currentUser.currentAccount;
     }
   );
@@ -72,7 +73,7 @@ const ArticleCommentList: React.FC<ArticleCommentProps> = ({
                 className="ms-auto"
                 variant="outline-danger"
                 onClick={() => {
-                  dispatch(deleteComment({ slug: articleId, id: comment.id }));
+                  dispatch(deleteComment({ slug: articleId!, id: comment.id }));
                 }}
               >
                 <i className="fa-solid fa-ban"></i>
@@ -108,7 +109,7 @@ const ArticleCommentList: React.FC<ArticleCommentProps> = ({
                 className="ms-auto"
                 variant="outline-danger"
                 onClick={() => {
-                  dispatch(deleteComment({ slug: articleId, id: comment.id }));
+                  dispatch(deleteComment({ slug: articleId!, id: comment.id }));
                 }}
               >
                 <i className="fa-solid fa-ban"></i>

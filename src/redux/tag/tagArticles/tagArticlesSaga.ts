@@ -1,13 +1,15 @@
 import axios from "axios";
 import { put, call, takeLatest } from "redux-saga/effects";
-import { PayloadAction } from "@reduxjs/toolkit";
 import {
   getTagArticles,
   getTagArticlesSuccess,
   getTagArticlesFail,
 } from "./tagArticlesSlice";
+import { TakeableChannel } from "redux-saga";
 
-const fetTagArticles = (action: PayloadAction) => {
+const fetchTagArticles = (action: {
+  payload: { offset: number; tag: string };
+}) => {
   const access_token = localStorage.getItem("access_token");
   if (access_token) {
     return axios.get(
@@ -25,9 +27,11 @@ const fetTagArticles = (action: PayloadAction) => {
   }
 };
 
-function* handleTagArticles(action: PayloadAction): unknown {
+function* handleTagArticles(action: {
+  payload: { offset: number; tag: string };
+}): unknown {
   try {
-    const articles = yield call(fetTagArticles, action);
+    const articles = yield call(fetchTagArticles, action);
     yield put(getTagArticlesSuccess(articles.data));
   } catch (error) {
     yield put(getTagArticlesFail((error as Error).message));
@@ -35,5 +39,8 @@ function* handleTagArticles(action: PayloadAction): unknown {
 }
 
 export function* tagArticlesSaga() {
-  yield takeLatest(getTagArticles.type, handleTagArticles);
+  yield takeLatest(
+    getTagArticles.type as unknown as TakeableChannel<unknown>,
+    handleTagArticles
+  );
 }

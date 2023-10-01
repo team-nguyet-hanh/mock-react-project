@@ -22,7 +22,12 @@ const TagArticlesSlice = createSlice({
   name: "tagArticles",
   initialState: initialTagArticlesState,
   reducers: {
-    getTagArticles(state, _action: PayloadAction<number>) {
+    getTagArticles(
+      state,
+      _action: {
+        payload: { offset: number; tag: string };
+      }
+    ) {
       state.isLoading = true;
       state.isSuccess = false;
     },

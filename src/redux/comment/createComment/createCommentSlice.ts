@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
-import { ArticleComment } from "../../../models/comment";
+import { ArticleComment, CommentPost } from "../../../models/comment";
 
 export type CreateCommentState = {
   isLoading: boolean;
@@ -23,7 +23,12 @@ const CreateCommentSlice = createSlice({
     createComment(state, _action: PayloadAction) {
       state.isLoading = true;
     },
-    createCommentSuccess(state, action: PayloadAction<ArticleComment>) {
+    createCommentSuccess(
+      state,
+      action: {
+        payload: { comment: ArticleComment };
+      }
+    ) {
       state.isSuccess = true;
       state.isLoading = false;
       state.createdComment.push(action.payload.comment);

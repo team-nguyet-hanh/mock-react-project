@@ -24,7 +24,7 @@ const TagsSlice = createSlice({
       state.isSuccess = false;
     },
 
-    getTagsSuccess(state, action: PayloadAction) {
+    getTagsSuccess(state, action: { payload: { tags: string[] } }) {
       state.isSuccess = true;
       state.isLoading = false;
       state.tags = action.payload.tags;

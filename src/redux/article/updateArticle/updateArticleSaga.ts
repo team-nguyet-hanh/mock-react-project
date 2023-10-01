@@ -7,6 +7,7 @@ import {
   updateAnArticleFail,
 } from "./updateArticleSlice";
 import { Article } from "../../../models/article";
+import { TakeableChannel } from "redux-saga";
 
 async function updateArticle(payload: { article: Article; slug: string }) {
   try {
@@ -42,5 +43,8 @@ function* handleUpdateArticle(action: {
 }
 
 export function* updateArticleSaga() {
-  yield takeEvery(updateAnArticle.type, handleUpdateArticle);
+  yield takeEvery(
+    updateAnArticle.type as unknown as TakeableChannel<unknown>,
+    handleUpdateArticle
+  );
 }

@@ -7,8 +7,12 @@ import {
   createCommentSuccess,
   createCommentFail,
 } from "./createCommentSlice";
+import { CommentPost } from "../../../models/comment";
+import { TakeableChannel } from "redux-saga";
 
-const postComment = (action: PayloadAction) => {
+const postComment = (action: {
+  payload: { comment: CommentPost; slug: string };
+}) => {
   return axios.post(
     `https://api.realworld.io/api/articles/${action.payload.slug}/comments`,
     action.payload.comment,
@@ -20,7 +24,9 @@ const postComment = (action: PayloadAction) => {
   );
 };
 
-export function* createCommentHandler(action: PayloadAction): unknown {
+export function* createCommentHandler(action: {
+  payload: { comment: CommentPost; slug: string };
+}): unknown {
   try {
     const comment = yield call(postComment, action);
     yield put(createCommentSuccess(comment.data));
@@ -30,5 +36,8 @@ export function* createCommentHandler(action: PayloadAction): unknown {
 }
 
 export function* createCommentSaga() {
-  yield takeEvery(createComment.type, createCommentHandler);
+  yield takeEvery(
+    createComment.type as unknown as TakeableChannel<unknown>,
+    createCommentHandler
+  );
 }
