@@ -33,7 +33,7 @@ const updateUser = createSlice({
       state.isUpdateLoading = false;
       state.updatedUser = action.payload;
     },
-    updateFail(state, _action: PayloadAction<UserDataPayload>) {
+    updateFail(state, _action: PayloadAction<string>) {
       state.isFail = true;
       state.isSuccess = false;
       state.isUpdateLoading = false;
@@ -41,7 +41,7 @@ const updateUser = createSlice({
     },
     resetUpdate(state) {
       state.isSuccess = false;
-    }
+    },
   },
 });
 

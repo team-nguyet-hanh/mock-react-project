@@ -13,29 +13,29 @@ const initialProfileState: ProfileState = {
   isLoading: false,
   isSuccess: false,
   isFail: false,
-  currentUser: {}
+  currentUser: {},
 };
-
 
 const ProfileSlice = createSlice({
   name: "profile",
   initialState: initialProfileState,
   reducers: {
-    getProfile(state, _action: PayloadAction<string|undefined>) {
-        state.isLoading = true;
+    getProfile(state, _action: PayloadAction<string | undefined>) {
+      state.isLoading = true;
     },
     getProfileSuccess(state, action: PayloadAction<UserType>) {
-        state.isSuccess = true;
-        state.isLoading = false;
-        state.currentUser = action.payload;
+      state.isSuccess = true;
+      state.isLoading = false;
+      state.currentUser = action.payload;
     },
-    getProfileFail(state) {
-        state.isLoading = false;
-        state.isFail = true;
-        state.isSuccess = false;
-    }
-  }
+    getProfileFail(state, _action: PayloadAction<string>) {
+      state.isLoading = false;
+      state.isFail = true;
+      state.isSuccess = false;
+    },
+  },
 });
 
-export const {getProfile, getProfileSuccess, getProfileFail} = ProfileSlice.actions;
+export const { getProfile, getProfileSuccess, getProfileFail } =
+  ProfileSlice.actions;
 export default ProfileSlice;

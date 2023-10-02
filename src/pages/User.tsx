@@ -39,10 +39,13 @@ export default function User() {
   );
 
   const updatedUser = useSelector(
-    (state: any) => state.updateUser.isUpdateLoading
+    (state: { updateUser: { isUpdateLoading: boolean } }) =>
+      state.updateUser.isUpdateLoading
   );
 
-  const isFail = useSelector((state: any) => state.profile.isFail);
+  const isFail = useSelector(
+    (state: { profile: { isFail: boolean } }) => state.profile.isFail
+  );
 
   useEffect(() => {
     isFail && navigate("/");

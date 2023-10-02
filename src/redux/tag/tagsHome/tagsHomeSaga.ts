@@ -4,7 +4,7 @@ import { PayloadAction } from "@reduxjs/toolkit";
 
 import { getTags, getTagsSuccess, getTagsFail } from "./tagsHomeSlice";
 
-const fetchTags = (action: PayloadAction) => {
+const fetchTags = (_action: PayloadAction) => {
   const access_token = localStorage.getItem("access_token");
   if (access_token) {
     return axios.get("https://api.realworld.io/api/tags", {

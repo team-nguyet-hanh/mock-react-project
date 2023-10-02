@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Formik, Form, Field } from "formik";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -6,10 +7,7 @@ import { UpdateState } from "../redux/update/updateSlice";
 
 import { useNavigate } from "react-router-dom";
 
-import {
-  CurrentUserState,
-  getCurrentUser,
-} from "../redux/currentUser/currentUserSlice";
+import { getCurrentUser } from "../redux/currentUser/currentUserSlice";
 
 import { useEffect, useState } from "react";
 
@@ -20,6 +18,7 @@ import formStyle from "./SignIn.module.css";
 import ModalSettings from "../components/ModelSettings";
 
 import toast from "react-hot-toast";
+import { UserType } from "../models/user";
 
 const notify = () =>
   toast.success("Successfully register!", {
@@ -41,8 +40,8 @@ function Settings() {
 
   const [preview, setPreview] = useState<any>(null);
 
-  const currentUser: any = useSelector(
-    (state: { currentUser: CurrentUserState }) =>
+  const currentUser: UserType = useSelector(
+    (state: { currentUser: { currentAccount: UserType } }) =>
       state.currentUser.currentAccount
   );
 
@@ -79,9 +78,7 @@ function Settings() {
           <Formik
             enableReinitialize={true}
             initialValues={{
-              // image: currentUser.image || "",
-
-              file: currentUser.image || "",
+              file: File || "",
 
               username: currentUser.username || "",
 
@@ -91,13 +88,11 @@ function Settings() {
 
               password: "123456" || "",
             }}
-            onSubmit={async (values) => {
+            onSubmit={async (values: any) => {
               if (values.file.name) {
                 const formData = new FormData();
 
                 formData.append("file", values.file);
-
-                console.log(values.file);
 
                 formData.append("upload_preset", "tj5ptm50");
 
@@ -145,13 +140,19 @@ function Settings() {
             {({ values, setFieldValue }) => (
               <Form>
                 <Stack>
-                  <label htmlFor="image" className="fw-semibold fs-6">Your Avatar:</label>
+                  <label htmlFor="image" className="fw-semibold fs-6">
+                    Your Avatar:
+                  </label>
                   <div>
                     <input
                       id="image"
                       className={formStyle.field}
-                      value={values.file.name ? values.file.name : values.file}
-                      onChange={(event: any) => {
+                      value={
+                        values.file instanceof File
+                          ? values.file.name
+                          : values.file
+                      }
+                      onChange={(event) => {
                         setPreview(event.target.value);
 
                         setFieldValue("file", event.target.value);
@@ -174,11 +175,8 @@ function Settings() {
                       value={""}
                       onChange={(event: any) => {
                         const file = new FileReader();
-
                         file.onload = () => setPreview(file.result);
-
                         file.readAsDataURL(event.currentTarget.files[0]);
-
                         setFieldValue("file", event.currentTarget.files[0]);
                       }}
                     />
@@ -195,7 +193,9 @@ function Settings() {
                 </Stack>
 
                 <Stack>
-                  <label htmlFor="username" className="fw-semibold fs-6 mt-3">User Name:</label>
+                  <label htmlFor="username" className="fw-semibold fs-6 mt-3">
+                    User Name:
+                  </label>
                   <div>
                     <Field
                       className={formStyle.field}
@@ -207,7 +207,9 @@ function Settings() {
                 </Stack>
 
                 <Stack>
-                  <label htmlFor="bio" className="fw-semibold fs-6 mt-3">Your Bio:</label>
+                  <label htmlFor="bio" className="fw-semibold fs-6 mt-3">
+                    Your Bio:
+                  </label>
                   <div>
                     <Field
                       className={formStyle.textareaField}
@@ -220,7 +222,9 @@ function Settings() {
                 </Stack>
 
                 <Stack>
-                  <label htmlFor="email" className="fw-semibold fs-6 mt-3">Your email:</label>
+                  <label htmlFor="email" className="fw-semibold fs-6 mt-3">
+                    Your email:
+                  </label>
                   <div>
                     <Field
                       className={formStyle.field}
@@ -232,7 +236,9 @@ function Settings() {
                 </Stack>
 
                 <Stack>
-                  <label htmlFor="password" className="fw-semibold fs-6 mt-3">Your password:</label>
+                  <label htmlFor="password" className="fw-semibold fs-6 mt-3">
+                    Your password:
+                  </label>
                   <div>
                     <Field
                       className={formStyle.field}

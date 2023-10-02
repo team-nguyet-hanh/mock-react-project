@@ -11,6 +11,7 @@ import Image from "react-bootstrap/Image";
 import { getProfile } from "../redux/profile/profleSlice";
 
 import { Nav, NavDropdown } from "react-bootstrap";
+import { UserType } from "../models/user";
 
 const UserNav = () => {
   const navigate = useNavigate();
@@ -20,10 +21,14 @@ const UserNav = () => {
   const user_name = localStorage.getItem("user_name");
 
   const currentUser = useSelector(
-    (state: any) => state.currentUser.currentAccount
+    (state: { currentUser: { currentAccount: UserType } }) =>
+      state.currentUser.currentAccount
   );
 
-  const updatedUser = useSelector((state: any) => state.updateUser.updatedUser);
+  const updatedUser = useSelector(
+    (state: { updateUser: { updatedUser: UserType } }) =>
+      state.updateUser.updatedUser
+  );
 
   const handleLogout = () => {
     dispatch(authActions.logout());

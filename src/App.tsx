@@ -1,19 +1,11 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-
 import Home from "./pages/Home";
-
 import AppLayout from "./components/AppLayout";
-
 import SignIn from "./pages/SignIn";
-
 import SignUp from "./pages/SignUp";
-
 import Editor from "./pages/Editor";
-
 import Settings from "./pages/Settings";
-
 import User from "./pages/User";
-
 import Article from "./pages/ArticleID";
 import { Toaster } from "react-hot-toast";
 import PrivateRouter from "./components/PrivateRouter";

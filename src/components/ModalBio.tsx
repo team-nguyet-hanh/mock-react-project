@@ -1,6 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ModalBio({ show, setShow, bio }: any) {
   const handleClose = () => setShow(false);
 

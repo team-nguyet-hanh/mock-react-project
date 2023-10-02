@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Article } from "../../../models/article";
+import { ArticleUpdate } from "../../../models/article";
 
 export type RegisterState = {
   isSuccess: boolean;
   isFail: boolean;
   isUpdateLoading: boolean;
-  updatedArticle: Article | undefined;
+  updatedArticle: ArticleUpdate | undefined;
   failMessage: string;
 };
 
@@ -21,7 +21,15 @@ const updateArticleSlice = createSlice({
   name: "updateArticle",
   initialState: initialRegisterState,
   reducers: {
-    updateAnArticle(state, _action: PayloadAction) {
+    updateAnArticle(
+      state,
+      _action: {
+        payload: {
+          article: ArticleUpdate;
+          slug: string;
+        };
+      }
+    ) {
       state.isUpdateLoading = true;
     },
     updateAnArticleSuccess(state, action) {

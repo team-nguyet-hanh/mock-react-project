@@ -32,16 +32,16 @@ const authSlice = createSlice({
       state.isLoggedIn = true;
       state.logging = false;
       state.currentUser = action.payload;
-      state.invalid= false
+      state.invalid = false;
     },
-    loginFail(state) {
+    loginFail(state, _action: PayloadAction<string>) {
       state.logging = false;
       state.invalid = true;
     },
     logout(state) {
       state.isLoggedIn = false;
       state.currentUser = undefined;
-    }
+    },
   },
 });
 

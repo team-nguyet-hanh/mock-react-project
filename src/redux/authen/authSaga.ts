@@ -18,8 +18,8 @@ function* handleLogin(payload: LoginPayLoad): unknown {
     localStorage.setItem("image", res.data.user.image);
     console.log(res);
     yield put(authActions.loginSuccess(res.data.user));
-  } catch (errors: any) {
-    yield put(authActions.loginFail(errors.message));
+  } catch (error) {
+    yield put(authActions.loginFail((error as Error).message));
   }
 }
 

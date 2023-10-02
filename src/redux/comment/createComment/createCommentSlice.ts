@@ -20,7 +20,12 @@ const CreateCommentSlice = createSlice({
   name: "createComment",
   initialState: initialCreateCommentSate,
   reducers: {
-    createComment(state, _action: PayloadAction) {
+    createComment(
+      state,
+      _action: {
+        payload: { comment: { comment: CommentPost }; slug: string };
+      }
+    ) {
       state.isLoading = true;
     },
     createCommentSuccess(

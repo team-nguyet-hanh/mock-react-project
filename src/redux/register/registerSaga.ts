@@ -15,8 +15,8 @@ function* handleSignUp(payload: RegisterPayload): unknown {
     const response = yield call(createNewUser, payload);
     console.log(response);
     yield put(registerActions.registerSuccess(response.data.user));
-  } catch (error: any) {
-    yield put(registerActions.registerFail(error.message));
+  } catch (error) {
+    yield put(registerActions.registerFail((error as Error).message));
   }
 }
 

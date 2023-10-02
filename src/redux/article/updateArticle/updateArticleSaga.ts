@@ -9,11 +9,16 @@ import {
 import { Article } from "../../../models/article";
 import { TakeableChannel } from "redux-saga";
 
-async function updateArticle(payload: { article: Article; slug: string }) {
+async function updateArticle(action: {
+  payload: {
+    article: Article;
+    slug: string;
+  };
+}) {
   try {
     return await axios.put(
-      `https://api.realworld.io/api/articles/${payload.slug}`,
-      { article: payload.article },
+      `https://api.realworld.io/api/articles/${action.payload.slug}`,
+      { article: action.payload.article },
       {
         headers: {
           Authorization: `Token ${localStorage.getItem("access_token")}`,
@@ -33,7 +38,7 @@ function* handleUpdateArticle(action: {
   };
 }): unknown {
   try {
-    const response = yield call(updateArticle, action.payload);
+    const response = yield call(updateArticle, action);
     if (response.status === 200)
       window.location.href = `/article/${response.data.article.slug}`;
     yield put(updateAnArticleSuccess(response.data.article));

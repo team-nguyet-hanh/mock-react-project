@@ -14,6 +14,7 @@ import MainArticle from "../components/MainArticle";
 import ArticleAuthor from "../components/ArticleAuthor";
 import { Spinner, Stack } from "react-bootstrap";
 import ArticleStyle from "./ArticleId.module.css";
+import { UserType } from "../models/user";
 
 const ArticlePage: React.FC = () => {
   const { articleId } = useParams<{ articleId: string }>();
@@ -31,7 +32,7 @@ const ArticlePage: React.FC = () => {
   );
 
   const currentUser = useSelector(
-    (state: { currentUser: { currentAccount } }) => {
+    (state: { currentUser: { currentAccount: UserType } }) => {
       return state.currentUser.currentAccount;
     }
   );
@@ -75,10 +76,10 @@ const ArticlePage: React.FC = () => {
     const { body } = data;
 
     if (body?.trim().length > 0) {
-      await dispatch(
+      dispatch(
         createComment({
           comment: { comment: { body: body } },
-          slug: articleId,
+          slug: articleId!,
         })
       );
       reset({

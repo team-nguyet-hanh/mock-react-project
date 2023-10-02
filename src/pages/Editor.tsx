@@ -213,6 +213,7 @@ const Editor: React.FC = () => {
                 <ParseTextarea
                   value={field.value || ""}
                   onChange={(value) => field.onChange(value)}
+                  errorMessage={""}
                 />
               )}
             />

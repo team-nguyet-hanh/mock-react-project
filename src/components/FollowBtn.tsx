@@ -6,6 +6,7 @@ import {
   following,
   unfollowing,
 } from "../redux/follow/followSlice";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function FollowBtn({ currentProfile }: any) {
   const dispatch = useDispatch();
   const access_token = localStorage.getItem("access_token");

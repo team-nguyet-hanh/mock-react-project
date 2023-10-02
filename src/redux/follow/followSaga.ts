@@ -30,21 +30,21 @@ const fetchUnfollow = (payload: string) => {
   );
 };
 
-function* hanldeFollow(action: {type: string, payload: string}): unknown {
+function* hanldeFollow(action: { type: string; payload: string }): unknown {
   try {
     const followRes = yield call(fetchFollow, action.payload);
     yield put(followSuccess(followRes.data.profile));
-  } catch (error: any) {
-    yield put(followFail(error.message));
+  } catch (error) {
+    yield put(followFail((error as Error).message));
   }
 }
 
-function* hanldeUnfollow(action: {type: string, payload: string}): unknown {
+function* hanldeUnfollow(action: { type: string; payload: string }): unknown {
   try {
-    const unFollowRes= yield call(fetchUnfollow, action.payload);
+    const unFollowRes = yield call(fetchUnfollow, action.payload);
     yield put(unfollowSuccess(unFollowRes.data.profile));
-  } catch (error: any) {
-    yield put(unfollowFail(error));
+  } catch (error) {
+    yield put(unfollowFail((error as Error).message));
   }
 }
 

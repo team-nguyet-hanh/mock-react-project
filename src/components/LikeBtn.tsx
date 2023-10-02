@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FavoriteState, like, unlike } from "../redux/favorite/favoriteSlice";
 import LikeBtnStyle from "./LikeBtn.module.css";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function LikeBtn({ article, isListItem }: any) {
   const dispatch = useDispatch();
   const access_token = localStorage.getItem("access_token");

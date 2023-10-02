@@ -1,9 +1,4 @@
-import {
-  fork,
-  take,
-  put,
-  call,
-} from "redux-saga/effects";
+import { fork, take, put, call } from "redux-saga/effects";
 import axios from "axios";
 import { UserDataPayload, updateUserActions } from "./updateSlice";
 import { PayloadAction } from "@reduxjs/toolkit";
@@ -12,8 +7,7 @@ function onUpdateUser(payload: UserDataPayload) {
   const user = {
     user: payload,
   };
-  return axios.put("https://api.realworld.io/api/user", user, 
-  {
+  return axios.put("https://api.realworld.io/api/user", user, {
     headers: {
       Authorization: `Token ${localStorage.getItem("access_token")}`,
     },
@@ -24,10 +18,10 @@ function* handleUpdate(payload: UserDataPayload): unknown {
   try {
     const response = yield call(onUpdateUser, payload);
     localStorage.setItem("access_token", response.data.user.token);
-    localStorage.setItem("user_name", response.data.user.username)
+    localStorage.setItem("user_name", response.data.user.username);
     yield put(updateUserActions.updateSuccess(response.data.user));
-  } catch (error: any) {
-    yield put(updateUserActions.updateFail(error.message));
+  } catch (error) {
+    yield put(updateUserActions.updateFail((error as Error).message));
   }
 }
 
@@ -41,5 +35,5 @@ function* watchingUpdateUSerFlow() {
 }
 
 export function* updateUserSaga() {
-  yield fork(watchingUpdateUSerFlow)
+  yield fork(watchingUpdateUSerFlow);
 }

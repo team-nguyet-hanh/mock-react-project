@@ -31,7 +31,7 @@ const registerSlice = createSlice({
             state.isSuccess = true;
             state.newUser = action.payload;
         },
-        registerFail(state, _action: PayloadAction<RegisterPayload>) {
+        registerFail(state, _action: PayloadAction<string>) {
             state.isFail = true;
         },
         registered(state) {

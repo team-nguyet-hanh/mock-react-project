@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
 import { updateUserActions } from "../redux/update/updateSlice";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ModalSettings({ show, setShow, data }: any) {
   const dispatch = useDispatch();
   const handleClose = () => setShow(false);
