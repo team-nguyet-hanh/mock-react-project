@@ -113,7 +113,7 @@ export default function User() {
               aria-current="page"
               id="my-article"
               onClick={(e) => {
-                navigate(`/${currentProfile.username}`);
+                navigate(`/profile/${currentProfile.username}`);
 
                 setActive((e.target as HTMLTextAreaElement).id);
               }}

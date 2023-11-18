@@ -7,19 +7,19 @@ import Editor from "./pages/Editor";
 import Settings from "./pages/Settings";
 import User from "./pages/User";
 import Article from "./pages/ArticleID";
-import { Toaster } from "react-hot-toast";
 import PrivateRouter from "./components/PrivateRouter";
+import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
 
     path: "/",
+    errorElement: <ErrorPage />,
 
     children: [
       {
         index: true,
-
         element: <Home />,
       },
 
@@ -34,8 +34,7 @@ const router = createBrowserRouter([
         element: <PrivateRouter />,
         children: [
           {
-            path: "/editor",
-            element: <Editor />,
+            path: "/editor", element: <Editor />,
           },
           { path: "/settings", element: <Settings /> },
         ],
@@ -51,7 +50,7 @@ const router = createBrowserRouter([
       { path: "/settings", element: <Settings /> },
 
       {
-        path: "/:userId",
+        path: "/profile/:userId",
 
         element: <User />,
 
@@ -68,6 +67,5 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  <Toaster></Toaster>;
   return <RouterProvider router={router}></RouterProvider>;
 }

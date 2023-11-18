@@ -6,6 +6,7 @@ export interface LoginPayLoad {
   password: string;
 }
 
+
 export interface AuthState {
   isLoggedIn: boolean;
   invalid: boolean;
@@ -42,10 +43,11 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
       state.currentUser = undefined;
     },
+    reset(state) {
+      state.invalid = false;
+    }
   },
 });
 
-// actions
 export const authActions = authSlice.actions;
-// reducer
 export default authSlice.reducer;

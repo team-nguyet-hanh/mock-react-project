@@ -31,7 +31,7 @@ export default function NavBar() {
 
   return (
     <div className={NavbarStyle.Container}>
-      <Row>
+      <Row className="g-0">
         <Col className="d-flex justify-content-start">
           <Nav className={NavbarStyle.LogoContainer}>
             <Nav.Item className={NavbarStyle.NavItem}>

@@ -25,7 +25,7 @@ const ArticleItem: React.FC<{ article: Article }> = ({ article }) => {
     <td className={`${ArticleItemStyle.article} align-items-center p-4`}>
       <Stack direction="horizontal">
         <Link
-          to={`/${article.author.username}`}
+          to={`/profile/${article.author.username}`}
           className={ArticleItemStyle.authorName}
         >
           <Image
@@ -36,7 +36,7 @@ const ArticleItem: React.FC<{ article: Article }> = ({ article }) => {
         </Link>
         <Stack className={`${ArticleItemStyle.header}  justify-content-center`}>
           <Link
-            to={`/${article.author.username}`}
+            to={`/profile/${article.author.username}`}
             className={ArticleItemStyle.authorName}
           >
             <p>{article.author.username}</p>

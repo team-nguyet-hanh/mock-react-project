@@ -17,7 +17,7 @@ export function LikeBtn({ article, isListItem }: any) {
       const existingArticle = favoritedArticle.find(
         (item) => item.slug === article?.slug
       );
-      // chưa like
+      // not like
       if (!existingArticle) {
         if (article?.favorited) {
           dispatch(unlike(article?.slug));

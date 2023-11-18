@@ -75,7 +75,7 @@ const UserNav = () => {
               onClick={() => {
                 dispatch(getProfile(currentUser.username));
 
-                navigate(`/${currentUser.username}`);
+                navigate(`/profile/${currentUser.username}`);
               }}
               className={NavbarStyle.item}
             >
@@ -112,7 +112,7 @@ const UserNav = () => {
               onClick={() => {
                 dispatch(getProfile(currentUser.username));
 
-                navigate(`/${currentUser.username}`);
+                navigate(`/profile/${currentUser.username}`);
               }}
               className={NavbarStyle.item}
             >

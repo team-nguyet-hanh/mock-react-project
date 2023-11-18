@@ -30,7 +30,6 @@ const Tags: React.FC<TagsProps> = ({ setPage }) => {
 
   return (
     <div className={`${TagStyle.list} align-self-start`}>
-      {!isLoadingTags ? (
         <Stack direction="horizontal" className="flex-wrap">
           {tags?.map((tag, index) => (
             <Button
@@ -47,9 +46,6 @@ const Tags: React.FC<TagsProps> = ({ setPage }) => {
             </Button>
           ))}
         </Stack>
-      ) : (
-        <Spinner className={TagStyle.spinner} />
-      )}
     </div>
   );
 };

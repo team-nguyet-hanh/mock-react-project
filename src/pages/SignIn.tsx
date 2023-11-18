@@ -2,7 +2,7 @@ import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthState, authActions } from "../redux/authen/authSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Stack from "react-bootstrap/Stack";
 import Col from "react-bootstrap/Col";
 import {
@@ -32,9 +32,7 @@ function validatePassword(value: string) {
   }
   return error;
 }
-
 export default function SignIn() {
-  const initialValues: MyFormValues = { email: "", password: "" };
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const registerSuccess = useSelector(
@@ -50,7 +48,7 @@ export default function SignIn() {
   useEffect(() => {
     isLogged && navigate("/");
     dispatch(registerActions.registered());
-  }, [dispatch, isLogged, navigate, registerSuccess]);
+  }, [dispatch, isInvalid, isLogged, navigate, registerSuccess]);
 
   return (
     <div className={signin.container}>
@@ -62,11 +60,14 @@ export default function SignIn() {
         <h1 className="text-center mb-3">Sign in</h1>
 
         {!isLogged && isInvalid ? (
-          <div style={{ color: "red" }}>Email or password is invalid </div>
+          <div style={{ color: "red" }}>Email or password is invalid!</div>
         ) : null}
 
         <Formik
-          initialValues={initialValues}
+          initialValues={{
+            email: "",
+            password: "",
+          }}
           onSubmit={(values, actions) => {
             actions.setSubmitting(false);
             dispatch(
@@ -77,7 +78,7 @@ export default function SignIn() {
             );
           }}
         >
-          {({ errors, touched }) => (
+          {({ errors, touched, values }) => (
             <Form>
               <Stack>
                 <div className={signin.formGroup}>
@@ -91,6 +92,7 @@ export default function SignIn() {
                     name="email"
                     placeholder="Enter your email address"
                     validate={validateEmail}
+                    values={values.email}
                   />
                   {touched.email && errors.email && (
                     <div className={signin.error}>{errors.email}</div>
@@ -111,6 +113,8 @@ export default function SignIn() {
                     type="password"
                     placeholder="Enter your password"
                     validate={validatePassword}
+                    autoComplete="off"
+                    values={values.password}
                   />
 
                   {touched.password && errors.password && (

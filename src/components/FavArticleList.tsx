@@ -14,7 +14,6 @@ import FavListStyle from "./FavArticleList.module.css";
 
 export default function FavArticleList() {
   const [offset, getOffSet] = useState(0);
-  // const [activePage, setActivePage] = useState(1);
   const dispatch = useDispatch();
   const location = useLocation().pathname;
   const currentUser: string | undefined = useParams().userId;
@@ -63,7 +62,9 @@ export default function FavArticleList() {
               </tr>
             ))
           ) : (
-            <p className="text-center fs-5 m-3">No article</p>
+            <tr className="text-center fs-5 m-3">
+              <td>No article</td>
+            </tr>
           )}
         </tbody>
       </Table>
