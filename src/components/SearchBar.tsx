@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Article } from "../models/article";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useNavigate } from "react-router-dom";
+import signin from "../pages/SignIn.module.css";
 const SearchBar = () => {
   const navigate = useNavigate();
   const [suggestData, setSuggestData] = useState([]);
@@ -14,9 +15,6 @@ const SearchBar = () => {
   const listTitle: any = useSelector(
     (state: { search: ArticleState }) => state.search.listArticle
   );
-  const handleSearch = () => {
-    console.log(listTitle.articles);
-  };
 
   const handleChange = (e: any) => {
     const inputData = e.target.value.trimStart();
@@ -60,10 +58,12 @@ const SearchBar = () => {
     <Container>
       <Row>
         <Col>
-          <input onChange={handleChange} value={inputData}></input>
-        </Col>
-        <Col>
-          <button onClick={handleSearch}>Search</button>
+            <input
+              className={signin.field}
+              onChange={handleChange}
+              value={inputData}
+              placeholder="Enter search title"
+            ></input>
         </Col>
       </Row>
       <Row>
