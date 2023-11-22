@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import HomeNav from "../components/HomeNav";
 
@@ -19,6 +19,8 @@ import Tags from "../components/Tags";
 
 import { getTagArticles } from "../redux/tag/tagArticles/tagArticlesSlice";
 import { Stack } from "react-bootstrap";
+import SearchBar from "../components/SearchBar";
+import { getSearchData } from "../redux/search/searchSlice";
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
@@ -45,6 +47,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     access_token ? dispatch(getFeedArticle(0)) : dispatch(getGlobalArticle(0));
+    dispatch(getSearchData())
   }, [access_token, dispatch]);
 
   return (
@@ -59,8 +62,10 @@ const Home: React.FC = () => {
           <ArticlesList page={page} />
           <Pagination page={page} />
         </Stack>
-
-        <Tags setPage={setPage} />
+        <Stack className="w-25">
+          <SearchBar />
+          <Tags setPage={setPage} />
+        </Stack>
       </Stack>
     </>
   );

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { put, call, takeEvery } from "redux-saga/effects";
+import { put, call, takeLeading } from "redux-saga/effects";
 
 import {
   like,
@@ -54,6 +54,6 @@ export function* unlikeHandler(action: PayloadAction): unknown {
 }
 
 export function* favoriteSaga() {
-  yield takeEvery(like.type, likeHandler);
-  yield takeEvery(unlike.type, unlikeHandler);
+  yield takeLeading(like.type, likeHandler);
+  yield takeLeading(unlike.type, unlikeHandler);
 }

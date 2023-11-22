@@ -20,10 +20,17 @@ const MainArticle: React.FC<ArticleProps> = ({ article }) => {
     dispatch(getCurrentUser());
   }, [dispatch]);
 
+  const breakLine = (text: string) => {
+    const parts = text.replace(/\\n/g, "<br/>");
+    return parts;
+  };
   return (
     <article>
       <p className={MainArticleStyle.title}>{article?.title}</p>
-      <p>{`${article?.body}`}</p>
+      {/* <p>{`${article?.body}`}</p> */}
+      {article && (
+        <p dangerouslySetInnerHTML={{ __html: breakLine(article.body) }} />
+      )}
       {article?.tagList.map((tag) => (
         <Button
           className="rounded-pill m-1"

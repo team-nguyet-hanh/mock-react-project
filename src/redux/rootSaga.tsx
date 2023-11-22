@@ -35,6 +35,7 @@ import { deleteArticleSaga } from "./article/deleteArticle/deleteArticleSaga";
 import { deleteCommentSaga } from "./comment/deleteComment/deleteCommentSaga";
 
 import { updateArticleSaga } from "./article/updateArticle/updateArticleSaga";
+import { SearchSaga } from "./search/searchSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -73,5 +74,7 @@ export default function* rootSaga() {
     deleteCommentSaga(),
 
     updateArticleSaga(),
+
+    SearchSaga()
   ]);
 }

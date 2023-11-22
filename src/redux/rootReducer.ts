@@ -35,6 +35,7 @@ import DeleteArticleSlice from "./article/deleteArticle/deleteArticleSlice";
 import DeleteCommentSlice from "./comment/deleteComment/deleteCommentSlice";
 
 import updateArticleSlice from "./article/updateArticle/updateArticleSlice";
+import SearchData from "./search/searchSlice";
 
 export default combineReducers({
   auth: authReducer,
@@ -72,4 +73,5 @@ export default combineReducers({
   deleteComment: DeleteCommentSlice.reducer,
 
   updateArticle: updateArticleSlice.reducer,
+  search: SearchData.reducer
 });
